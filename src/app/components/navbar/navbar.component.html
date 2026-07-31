@@ -1,0 +1,67 @@
+<header
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  [class.py-4]="!scrolled()"
+  [class.py-2]="scrolled()"
+>
+  <nav
+    class="section-container flex items-center justify-between rounded-2xl border transition-all duration-300"
+    [class]="
+      scrolled()
+        ? 'border-white/10 bg-ink-950/70 backdrop-blur-xl shadow-glass py-3 px-5'
+        : 'border-transparent py-2 px-2'
+    "
+  >
+    <a href="#home" class="font-display text-lg font-semibold text-white">
+      Ayesha<span class="text-accent-cyan">.</span>dev
+    </a>
+
+    <ul class="hidden items-center gap-8 md:flex">
+      @for (link of links; track link.href) {
+        <li>
+          <a
+            [href]="link.href"
+            class="text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-accent-cyan"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <a href="#contact" class="btn-primary hidden !py-2 !px-5 !text-xs md:inline-flex">
+      Get in Touch
+    </a>
+
+    <button
+      type="button"
+      class="inline-flex items-center justify-center rounded-full border border-white/10 p-2 text-gray-200 md:hidden"
+      (click)="toggleMobile()"
+      [attr.aria-expanded]="mobileOpen()"
+      aria-label="Toggle navigation menu"
+    >
+      @if (mobileOpen()) {
+        <lucide-icon name="x" [size]="20" />
+      } @else {
+        <lucide-icon name="menu" [size]="20" />
+      }
+    </button>
+  </nav>
+
+  @if (mobileOpen()) {
+    <div class="section-container mt-2">
+      <ul class="flex flex-col gap-1 rounded-2xl border border-white/10 bg-ink-950/95 p-3 shadow-glass backdrop-blur-xl animate-fade-in-up">
+        @for (link of links; track link.href) {
+          <li>
+            <a
+              [href]="link.href"
+              (click)="closeMobile()"
+              class="block rounded-xl px-4 py-3 text-sm font-medium text-gray-300 transition-colors duration-200 hover:bg-white/5 hover:text-accent-cyan"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  }
+</header>

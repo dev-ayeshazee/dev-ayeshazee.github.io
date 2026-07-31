@@ -1,0 +1,21 @@
+<section class="relative -mt-8 pb-24">
+  <div class="section-container">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      @for (metric of metrics; track metric.label) {
+        <div
+          class="glass-panel group flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan"
+        >
+          <div
+            class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan transition-colors duration-300 group-hover:border-accent-cyan/40"
+          >
+            <lucide-icon [name]="metric.icon" [size]="20" />
+          </div>
+          <div>
+            <p class="font-display text-2xl font-semibold text-white">{{ metric.value }}</p>
+            <p class="mt-1 text-sm leading-snug text-gray-400">{{ metric.label }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,70 @@
+<section id="experience" class="relative py-24">
+  <div class="section-container">
+    <div class="text-center">
+      <p class="section-eyebrow">Career Journey</p>
+      <h2 class="section-title">Experience Timeline</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-gray-400">
+        6+ years building production Angular and full-stack applications across enterprise and startup teams.
+      </p>
+    </div>
+
+    <div class="relative mt-16">
+      <div
+        class="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-accent-cyan/60 via-white/10 to-transparent sm:block"
+      ></div>
+
+      <ol class="space-y-6">
+        @for (item of experience; track item.company; let i = $index) {
+          <li class="relative sm:pl-12">
+            <span
+              class="absolute left-0 top-6 hidden h-3 w-3 -translate-x-1/2 rounded-full border-2 border-ink-950 sm:block"
+              [class]="item.current ? 'bg-accent-cyan shadow-glow-cyan' : 'bg-white/20'"
+            ></span>
+
+            <button
+              type="button"
+              (click)="toggle(i)"
+              class="glass-panel w-full p-6 text-left transition-all duration-300 hover:border-accent-cyan/30"
+              [class.border-accent-cyan]="activeIndex() === i"
+            >
+              <div class="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 class="font-display text-lg font-semibold text-white">{{ item.role }}</h3>
+                    @if (item.current) {
+                      <span class="chip !border-accent-cyan/40 !text-accent-cyan">Current</span>
+                    }
+                  </div>
+                  <p class="mt-1 text-sm font-medium text-accent-violet">{{ item.company }}</p>
+                </div>
+                <span class="whitespace-nowrap text-sm text-gray-500">{{ item.period }}</span>
+              </div>
+
+              <div
+                class="grid overflow-hidden transition-all duration-300 ease-out"
+                [class]="activeIndex() === i ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'"
+              >
+                <div class="min-h-0">
+                  <ul class="space-y-2">
+                    @for (point of item.points; track point) {
+                      <li class="flex gap-2 text-sm leading-relaxed text-gray-400">
+                        <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-cyan"></span>
+                        {{ point }}
+                      </li>
+                    }
+                  </ul>
+
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    @for (tag of item.tags; track tag) {
+                      <span class="chip">{{ tag }}</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            </button>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

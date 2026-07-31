@@ -1,0 +1,49 @@
+<section id="skills" class="relative py-24">
+  <div class="section-container">
+    <div class="text-center">
+      <p class="section-eyebrow">Technical Core</p>
+      <h2 class="section-title">Skills &amp; Architecture Matrix</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-gray-400">
+        A full-stack toolkit for shipping scalable frontend architecture and reliable backend systems.
+      </p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-3">
+      @for (group of skillGroups; track group.key) {
+        <button
+          type="button"
+          (click)="select(group.key)"
+          class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300"
+          [class]="
+            activeKey() === group.key
+              ? 'border-accent-cyan/50 bg-accent-cyan/10 text-white shadow-glow-cyan'
+              : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/25 hover:text-gray-200'
+          "
+        >
+          <lucide-icon [name]="group.icon" [size]="16" />
+          {{ group.label }}
+        </button>
+      }
+    </div>
+
+    <div class="mt-10">
+      @for (group of skillGroups; track group.key) {
+        @if (activeKey() === group.key) {
+          <div class="glass-panel animate-fade-in-up p-8">
+            <p class="max-w-2xl text-sm leading-relaxed text-gray-400">{{ group.description }}</p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              @for (skill of group.skills; track skill) {
+                <span
+                  class="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/40 hover:text-accent-cyan"
+                >
+                  {{ skill }}
+                </span>
+              }
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</section>

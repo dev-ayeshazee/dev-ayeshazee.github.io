@@ -1,0 +1,65 @@
+<section
+  id="home"
+  class="relative flex min-h-screen items-center overflow-hidden pt-32 pb-20"
+>
+  <div class="absolute inset-0 -z-10 bg-grid-fade bg-grid"></div>
+  <div
+    class="absolute -top-24 left-1/2 -z-10 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-accent-violet/20 blur-[140px] animate-float"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 -z-10 h-[28rem] w-[28rem] rounded-full bg-accent-cyan/10 blur-[140px]"
+  ></div>
+
+  <div class="section-container">
+    <div class="max-w-3xl animate-fade-in-up">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-medium text-gray-300">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan"></span>
+        </span>
+        Available for new opportunities
+      </div>
+
+      <h1 class="mt-6 font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
+        {{ profile.headline }}
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-gray-400">
+        {{ profile.tagline }}
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-400">
+        <span class="inline-flex items-center gap-1.5">
+          <lucide-icon name="map-pin" [size]="16" class="text-accent-cyan" />
+          {{ profile.location }} · {{ profile.remote }}
+        </span>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#experience" class="btn-primary">
+          View Work
+          <lucide-icon name="arrow-right" [size]="16" />
+        </a>
+        <a href="#contact" class="btn-secondary">
+          Get in Touch
+        </a>
+        <a
+          [href]="profile.linkedin"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn profile"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+        >
+          <lucide-icon name="linkedin" [size]="18" />
+        </a>
+        <a
+          [href]="'mailto:' + profile.email"
+          aria-label="Send email"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+        >
+          <lucide-icon name="mail" [size]="18" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

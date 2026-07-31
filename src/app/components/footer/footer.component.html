@@ -1,0 +1,26 @@
+<footer class="border-t border-white/10 py-10">
+  <div class="section-container flex flex-col items-center justify-between gap-4 sm:flex-row">
+    <p class="text-sm text-gray-500">
+      &copy; {{ year }} {{ profile.name }}. Built with Angular &amp; Tailwind CSS.
+    </p>
+
+    <div class="flex items-center gap-4">
+      <a
+        [href]="profile.linkedin"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+        class="text-gray-500 transition-colors duration-200 hover:text-accent-cyan"
+      >
+        <lucide-icon name="linkedin" [size]="18" />
+      </a>
+      <a
+        [href]="'mailto:' + profile.email"
+        aria-label="Email"
+        class="text-gray-500 transition-colors duration-200 hover:text-accent-cyan"
+      >
+        <lucide-icon name="mail" [size]="18" />
+      </a>
+    </div>
+  </div>
+</footer>
