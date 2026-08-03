@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
-import { profile } from '../../data/profile';
+import { certifications, educations, profile } from '../../data/profile';
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +12,8 @@ import { profile } from '../../data/profile';
 })
 export class ContactComponent {
   protected readonly profile = profile;
+  protected readonly educations = educations;
+  protected readonly certifications = certifications;
   protected readonly submitted = signal(false);
 
   private readonly fb = new FormBuilder();

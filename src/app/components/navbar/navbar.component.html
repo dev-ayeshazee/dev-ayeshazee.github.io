@@ -28,9 +28,27 @@
       }
     </ul>
 
-    <a href="#contact" class="btn-primary hidden !py-2 !px-5 !text-xs md:inline-flex">
-      Get in Touch
-    </a>
+    <div class="hidden items-center gap-3 md:flex">
+      <a
+        [href]="profile.github"
+        target="_blank"
+        rel="noopener"
+        aria-label="GitHub profile"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+      >
+        <lucide-icon name="github" [size]="16" />
+      </a>
+      <a
+        [href]="profile.phoneHref"
+        aria-label="Call Ayesha"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+      >
+        <lucide-icon name="phone" [size]="16" />
+      </a>
+      <a href="#contact" class="btn-primary !py-2 !px-5 !text-xs">
+        Get in Touch
+      </a>
+    </div>
 
     <button
       type="button"
@@ -62,6 +80,25 @@
           </li>
         }
       </ul>
+
+      <div class="mt-2 flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-ink-950/95 p-3 shadow-glass backdrop-blur-xl">
+        <a
+          [href]="profile.github"
+          target="_blank"
+          rel="noopener"
+          aria-label="GitHub profile"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+        >
+          <lucide-icon name="github" [size]="18" />
+        </a>
+        <a
+          [href]="profile.phoneHref"
+          aria-label="Call Ayesha"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-gray-300 transition-all duration-300 hover:border-accent-cyan/50 hover:text-accent-cyan"
+        >
+          <lucide-icon name="phone" [size]="18" />
+        </a>
+      </div>
     </div>
   }
 </header>

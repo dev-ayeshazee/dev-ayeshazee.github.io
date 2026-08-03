@@ -1,0 +1,50 @@
+<section id="projects" class="relative py-24">
+  <div class="section-container">
+    <div class="text-center">
+      <p class="section-eyebrow">Selected Work</p>
+      <h2 class="section-title">Projects Showcase</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-gray-400">
+        A cross-section of enterprise platforms, e-commerce experiences, and AI-driven products shipped in
+        production.
+      </p>
+    </div>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-3">
+      @for (category of categories; track category.key) {
+        <button
+          type="button"
+          (click)="select(category.key)"
+          class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300"
+          [class]="
+            activeCategory() === category.key
+              ? 'border-accent-cyan/50 bg-accent-cyan/10 text-white shadow-glow-cyan'
+              : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/25 hover:text-gray-200'
+          "
+        >
+          {{ category.label }}
+        </button>
+      }
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      @for (project of filteredProjects(); track project.name) {
+        <div
+          class="glass-panel group flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan animate-fade-in-up"
+        >
+          <div
+            class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan transition-colors duration-300 group-hover:border-accent-cyan/40"
+          >
+            <lucide-icon [name]="categoryIcons[project.category]" [size]="20" />
+          </div>
+
+          <div>
+            <h3 class="font-display text-base font-semibold text-white">{{ project.name }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
+          </div>
+        </div>
+      } @empty {
+        <p class="col-span-full text-center text-sm text-gray-500">No projects in this category yet.</p>
+      }
+    </div>
+  </div>
+</section>

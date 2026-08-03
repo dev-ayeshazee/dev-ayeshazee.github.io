@@ -24,6 +24,18 @@
 
         <div class="flex items-start gap-4">
           <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan">
+            <lucide-icon name="phone" [size]="18" />
+          </span>
+          <div>
+            <p class="text-sm text-gray-500">Phone</p>
+            <a [href]="profile.phoneHref" class="font-medium text-white transition-colors hover:text-accent-cyan">
+              {{ profile.phone }}
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan">
             <lucide-icon name="map-pin" [size]="18" />
           </span>
           <div>
@@ -50,10 +62,45 @@
           </div>
         </div>
 
+        <div class="flex items-start gap-4">
+          <span class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan">
+            <lucide-icon name="github" [size]="18" />
+          </span>
+          <div>
+            <p class="text-sm text-gray-500">GitHub</p>
+            <a
+              [href]="profile.github"
+              target="_blank"
+              rel="noopener"
+              class="font-medium text-white transition-colors hover:text-accent-cyan"
+            >
+              /dev-ayeshazee
+            </a>
+          </div>
+        </div>
+
         <div class="border-t border-white/10 pt-6">
           <p class="text-sm text-gray-500">Education</p>
-          <p class="mt-1 font-medium text-white">{{ profile.education.degree }}</p>
-          <p class="text-sm text-gray-500">{{ profile.education.school }}</p>
+          <div class="mt-2 space-y-3">
+            @for (edu of educations; track edu.school) {
+              <div>
+                <p class="font-medium text-white">{{ edu.degree }}</p>
+                <p class="text-sm text-gray-500">{{ edu.school }} · {{ edu.period }}</p>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-6">
+          <p class="text-sm text-gray-500">Certifications</p>
+          <ul class="mt-2 space-y-1.5">
+            @for (cert of certifications; track cert) {
+              <li class="flex gap-2 text-sm leading-relaxed text-gray-300">
+                <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-cyan"></span>
+                {{ cert }}
+              </li>
+            }
+          </ul>
         </div>
       </div>
 

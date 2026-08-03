@@ -3,6 +3,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { MetricsComponent } from './components/metrics/metrics.component';
 import { ExperienceComponent } from './components/experience/experience.component';
+import { ProjectsComponent } from './components/projects/projects.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -15,6 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeroComponent,
     MetricsComponent,
     ExperienceComponent,
+    ProjectsComponent,
     SkillsComponent,
     ContactComponent,
     FooterComponent,

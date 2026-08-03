@@ -2,62 +2,80 @@ export interface ExperienceEntry {
   role: string;
   company: string;
   period: string;
-  current?: boolean;
+  type: 'work' | 'break';
   points: string[];
   tags: string[];
 }
 
 export const experience: ExperienceEntry[] = [
   {
-    role: 'Senior Fullstack Developer',
-    company: 'Freelance / Part-Time',
-    period: '04/2026 – Present',
-    current: true,
+    role: 'Senior Frontend Developer',
+    company: 'Websays (Contract / Freelance)',
+    period: '02/2025 – 05/2025',
+    type: 'work',
     points: [
-      'Architected multi-platform ecosystems combining Angular, React, and Node.js APIs.',
-      'Built geospatial tracking modules and optimized MongoDB database queries for scale.',
+      'Translated designs into responsive Angular interfaces with reusable components for the new web app launch.',
+      'Led the migration of the Websays application from Angular 8 to Angular 18, ensuring performance improvements and UI consistency.',
     ],
-    tags: ['Angular', 'React', 'Node.js', 'MongoDB', 'Geospatial'],
+    tags: ['Angular', 'Migration', 'Component Design'],
   },
   {
-    role: 'Senior Frontend Developer',
-    company: 'Websays',
-    period: '04/2024 – 03/2026',
-    points: [
-      'Implemented complex RxJS data flows powering real-time dashboards.',
-      'Delivered pixel-perfect Figma-to-code translation with a strong focus on UX detail.',
-      'Drove performance tuning initiatives resulting in 25% faster load speeds.',
-    ],
-    tags: ['Angular', 'RxJS', 'Figma', 'Performance'],
+    role: 'Career Break',
+    company: 'Family Priorities',
+    period: '06/2025 – 09/2025',
+    type: 'break',
+    points: [],
+    tags: [],
+  },
+  {
+    role: 'Career Break',
+    company: 'Maternity',
+    period: '12/2024 – 01/2025',
+    type: 'break',
+    points: [],
+    tags: [],
   },
   {
     role: 'Senior Angular Developer',
-    company: 'Devstudio International',
-    period: '09/2024 – 12/2024',
+    company: 'Devstudio International (Remote)',
+    period: '09/2024 – 11/2024',
+    type: 'work',
     points: [
-      'Resolved critical workflows for risk assessment modules used by enterprise clients.',
-      'Boosted task completion rates by 15% through targeted UX and workflow improvements.',
+      'Led the migration of the Hoopiz platform from Angular 12 to 18.',
+      'Debugged and enhanced key credit management and risk management modules; redesigned platform UI screens.',
     ],
-    tags: ['Angular', 'Risk Modules', 'UX'],
+    tags: ['Angular', 'Migration', 'Risk Management'],
+  },
+  {
+    role: 'Senior Frontend Developer',
+    company: 'Websays (Hybrid)',
+    period: '04/2024 – 08/2024',
+    type: 'work',
+    points: ['Managed Websays Dashboard frontend, built admin portal features, and optimized load times.'],
+    tags: ['Angular', 'Dashboard', 'Performance'],
   },
   {
     role: 'Angular Developer',
-    company: 'IdeaToLife',
+    company: 'IdeaToLife (Remote)',
     period: '09/2021 – 03/2024',
-    points: [
-      'Delivered client applications across 5+ enterprise projects using Agile methodologies.',
-      'Collaborated cross-functionally with design and backend teams to ship production features.',
-    ],
-    tags: ['Angular', 'Agile', 'Enterprise'],
+    type: 'work',
+    points: ['Developed client-side web applications using Angular across 5+ enterprise projects.'],
+    tags: ['Angular', 'Enterprise'],
+  },
+  {
+    role: 'Frontend Developer',
+    company: 'Aquila Techs (Part Time / Freelance)',
+    period: '07/2021 – 02/2022',
+    type: 'work',
+    points: ['Built feature-rich user interfaces and dynamic web apps for a meal prep application.'],
+    tags: ['Angular', 'UI/UX'],
   },
   {
     role: 'MEAN Stack Developer',
-    company: 'Nexus AI',
+    company: 'Nexus AI (Onsite)',
     period: '01/2020 – 08/2021',
-    points: [
-      'Integrated AI platform APIs (MLFlow, Apache Airflow, Hadoop) into modern frontends.',
-      'Built and maintained full-stack features across the MEAN stack.',
-    ],
+    type: 'work',
+    points: ['Designed AI components, integrated MLFlow/Airflow/Hadoop APIs, and built Node.js backend endpoints.'],
     tags: ['MongoDB', 'Express', 'Angular', 'Node.js', 'MLFlow', 'Airflow'],
   },
 ];
