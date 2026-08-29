@@ -2,43 +2,84 @@
   <div class="section-container">
     <div class="text-center">
       <p class="section-eyebrow">Technical Core</p>
-      <h2 class="section-title">Skills &amp; Architecture Matrix</h2>
+      <h2 class="section-title">Skills &amp; Qualifications</h2>
       <p class="mx-auto mt-4 max-w-2xl text-gray-400">
-        A full-stack toolkit for shipping scalable frontend architecture and reliable backend systems.
+        A full-stack toolkit, plus the certifications, education, and languages behind it.
       </p>
     </div>
 
     <div class="mt-12 flex flex-wrap justify-center gap-3">
-      @for (group of skillGroups; track group.key) {
+      @for (tab of tabs; track tab.key) {
         <button
           type="button"
-          (click)="select(group.key)"
+          (click)="select(tab.key)"
           class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300"
           [class]="
-            activeKey() === group.key
+            activeKey() === tab.key
               ? 'border-accent-cyan/50 bg-accent-cyan/10 text-white shadow-glow-cyan'
               : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/25 hover:text-gray-200'
           "
         >
-          <lucide-icon [name]="group.icon" [size]="16" />
-          {{ group.label }}
+          <lucide-icon [name]="tab.icon" [size]="16" />
+          {{ tab.label }}
         </button>
       }
     </div>
 
     <div class="mt-10">
-      @for (group of skillGroups; track group.key) {
-        @if (activeKey() === group.key) {
-          <div class="glass-panel animate-fade-in-up p-8">
-            <p class="max-w-2xl text-sm leading-relaxed text-gray-400">{{ group.description }}</p>
+      @switch (activeTab().kind) {
+        @case ('skills') {
+          @if (activeSkillGroup(); as group) {
+            <div class="glass-panel animate-fade-in-up p-8">
+              <p class="max-w-2xl text-sm leading-relaxed text-gray-400">{{ group.description }}</p>
 
-            <div class="mt-6 flex flex-wrap gap-3">
-              @for (skill of group.skills; track skill) {
-                <span
-                  class="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/40 hover:text-accent-cyan"
-                >
-                  {{ skill }}
-                </span>
+              <div class="mt-6 flex flex-wrap gap-3">
+                @for (skill of group.skills; track skill) {
+                  <span
+                    class="rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-gray-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/40 hover:text-accent-cyan"
+                  >
+                    {{ skill }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+        }
+        @case ('certifications') {
+          <div class="glass-panel animate-fade-in-up p-8">
+            <ul class="space-y-4">
+              @for (cert of certifications; track cert) {
+                <li class="flex items-start gap-3 text-sm leading-relaxed text-gray-300">
+                  <lucide-icon name="award" [size]="16" class="mt-0.5 shrink-0 text-accent-cyan" />
+                  {{ cert }}
+                </li>
+              }
+            </ul>
+          </div>
+        }
+        @case ('education') {
+          <div class="glass-panel animate-fade-in-up p-8">
+            <div class="space-y-6">
+              @for (edu of educations; track edu.school) {
+                <div class="flex items-start gap-3">
+                  <lucide-icon name="graduation-cap" [size]="16" class="mt-0.5 shrink-0 text-accent-cyan" />
+                  <div>
+                    <p class="font-medium text-white">{{ edu.degree }}</p>
+                    <p class="text-sm text-gray-500">{{ edu.school }} · {{ edu.period }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+        @case ('languages') {
+          <div class="glass-panel animate-fade-in-up p-8">
+            <div class="flex flex-wrap gap-4">
+              @for (lang of languages; track lang.name) {
+                <div class="rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3">
+                  <p class="font-medium text-white">{{ lang.name }}</p>
+                  <p class="text-sm text-gray-500">{{ lang.level }}</p>
+                </div>
               }
             </div>
           </div>

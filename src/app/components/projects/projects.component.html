@@ -1,50 +1,246 @@
 <section id="projects" class="relative py-24">
   <div class="section-container">
     <div class="text-center">
-      <p class="section-eyebrow">Selected Work</p>
+      <p class="section-eyebrow">Professional Projects</p>
       <h2 class="section-title">Projects Showcase</h2>
       <p class="mx-auto mt-4 max-w-2xl text-gray-400">
         A cross-section of enterprise platforms, e-commerce experiences, and AI-driven products shipped in
-        production.
+        production — alongside personal and freelance work.
       </p>
     </div>
 
-    <div class="mt-12 flex flex-wrap justify-center gap-3">
-      @for (category of categories; track category.key) {
+    <div class="mt-10 flex justify-center">
+      <div class="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1">
         <button
           type="button"
-          (click)="select(category.key)"
-          class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300"
+          (click)="setView('showcase')"
+          class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300"
           [class]="
-            activeCategory() === category.key
-              ? 'border-accent-cyan/50 bg-accent-cyan/10 text-white shadow-glow-cyan'
-              : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/25 hover:text-gray-200'
+            viewMode() === 'showcase'
+              ? 'bg-accent-cyan/10 text-white shadow-glow-cyan'
+              : 'text-gray-400 hover:text-gray-200'
           "
         >
-          {{ category.label }}
+          <lucide-icon name="layout-grid" [size]="16" />
+          Showcase
         </button>
-      }
-    </div>
-
-    <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      @for (project of filteredProjects(); track project.name) {
-        <div
-          class="glass-panel group flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan animate-fade-in-up"
+        <button
+          type="button"
+          (click)="setView('case-studies')"
+          class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300"
+          [class]="
+            viewMode() === 'case-studies'
+              ? 'bg-accent-cyan/10 text-white shadow-glow-cyan'
+              : 'text-gray-400 hover:text-gray-200'
+          "
         >
-          <div
-            class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan transition-colors duration-300 group-hover:border-accent-cyan/40"
-          >
-            <lucide-icon [name]="categoryIcons[project.category]" [size]="20" />
-          </div>
-
-          <div>
-            <h3 class="font-display text-base font-semibold text-white">{{ project.name }}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
-          </div>
-        </div>
-      } @empty {
-        <p class="col-span-full text-center text-sm text-gray-500">No projects in this category yet.</p>
-      }
+          <lucide-icon name="file-text" [size]="16" />
+          Case Studies
+        </button>
+      </div>
     </div>
+
+    @if (viewMode() === 'showcase') {
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        @for (category of categories; track category.key) {
+          <button
+            type="button"
+            (click)="select(category.key)"
+            class="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-300"
+            [class]="
+              activeCategory() === category.key
+                ? 'border-accent-cyan/50 bg-accent-cyan/10 text-white shadow-glow-cyan'
+                : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/25 hover:text-gray-200'
+            "
+          >
+            {{ category.label }}
+          </button>
+        }
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        @for (project of filteredProjects(); track project.name) {
+          <div
+            class="glass-panel group flex flex-col gap-4 overflow-hidden p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan animate-fade-in-up"
+          >
+            @if (project.image) {
+              <button
+                type="button"
+                (click)="openLightbox(project.gallery?.length ? project.gallery! : [project.image], 0)"
+                aria-label="View full-size screenshot"
+                class="group/shot relative -mx-6 -mt-6 block aspect-video w-[calc(100%+3rem)] cursor-zoom-in overflow-hidden border-b border-white/10 bg-black/20 p-0 text-left"
+              >
+                <img
+                  [src]="project.image"
+                  [alt]="project.name + ' screenshot'"
+                  loading="lazy"
+                  class="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                <span
+                  class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
+                >
+                  <lucide-icon name="maximize-2" [size]="22" class="text-white" />
+                </span>
+              </button>
+            } @else {
+              <div
+                class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan transition-colors duration-300 group-hover:border-accent-cyan/40"
+              >
+                <lucide-icon [name]="categoryIcons[project.category]" [size]="20" />
+              </div>
+            }
+
+            <div>
+              <div class="flex items-center gap-2">
+                @if (project.image) {
+                  <lucide-icon [name]="categoryIcons[project.category]" [size]="14" class="shrink-0 text-accent-cyan" />
+                }
+                <h3 class="font-display text-base font-semibold text-white">{{ project.name }}</h3>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
+            </div>
+
+            @if (project.tags?.length) {
+              <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                @for (tag of project.tags; track tag) {
+                  <span class="chip">{{ tag }}</span>
+                }
+              </div>
+            }
+          </div>
+        } @empty {
+          <p class="col-span-full text-center text-sm text-gray-500">No projects in this category yet.</p>
+        }
+      </div>
+    } @else {
+      <div class="mx-auto mt-10 max-w-4xl space-y-4">
+        @for (project of caseStudies(); track project.name; let i = $index) {
+          <div class="glass-panel overflow-hidden transition-all duration-300" [class.border-accent-cyan]="activeCaseStudy() === i">
+            <button
+              type="button"
+              (click)="toggleCaseStudy(i)"
+              class="flex w-full items-start gap-4 p-6 text-left"
+            >
+              @if (project.image) {
+                <img
+                  [src]="project.image"
+                  [alt]="project.name + ' screenshot'"
+                  loading="lazy"
+                  class="h-11 w-16 shrink-0 rounded-lg border border-white/10 object-cover object-top"
+                />
+              } @else {
+                <div
+                  class="inline-flex h-11 w-16 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-accent-cyan"
+                >
+                  <lucide-icon [name]="categoryIcons[project.category]" [size]="20" />
+                </div>
+              }
+
+              <div class="flex-1">
+                <h3 class="font-display text-base font-semibold text-white sm:text-lg">{{ project.name }}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
+              </div>
+            </button>
+
+            <div
+              class="grid overflow-hidden transition-all duration-300 ease-out"
+              [class]="activeCaseStudy() === i ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+            >
+              <div class="min-h-0 space-y-5 px-6 pb-6 pl-[6.5rem]">
+                @if (project.gallery?.length) {
+                  <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    @for (shot of project.gallery; track shot; let si = $index) {
+                      <button
+                        type="button"
+                        (click)="openLightbox(project.gallery!, si)"
+                        aria-label="View full-size screenshot"
+                        class="group/shot relative aspect-video cursor-zoom-in overflow-hidden rounded-lg border border-white/10 p-0"
+                      >
+                        <img
+                          [src]="shot"
+                          [alt]="project.name + ' screenshot'"
+                          loading="lazy"
+                          class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/shot:scale-105"
+                        />
+                        <span
+                          class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
+                        >
+                          <lucide-icon name="maximize-2" [size]="18" class="text-white" />
+                        </span>
+                      </button>
+                    }
+                  </div>
+                }
+
+                @for (point of project.details; track point.title) {
+                  <div>
+                    <p class="text-sm font-semibold text-accent-violet">{{ point.title }}</p>
+                    <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ point.description }}</p>
+                  </div>
+                }
+
+                @if (project.tags?.length) {
+                  <div class="flex flex-wrap gap-2 pt-1">
+                    @for (tag of project.tags; track tag) {
+                      <span class="chip">{{ tag }}</span>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
   </div>
 </section>
+
+@if (lightbox(); as lb) {
+  <div
+    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm animate-fade-in-up sm:p-10"
+    (click)="closeLightbox()"
+  >
+    <button
+      type="button"
+      (click)="closeLightbox(); $event.stopPropagation()"
+      aria-label="Close image viewer"
+      class="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 sm:right-8 sm:top-8"
+    >
+      <lucide-icon name="x" [size]="20" />
+    </button>
+
+    @if (lb.images.length > 1) {
+      <button
+        type="button"
+        (click)="prevImage(); $event.stopPropagation()"
+        aria-label="Previous image"
+        class="absolute left-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 sm:left-8"
+      >
+        <lucide-icon name="chevron-left" [size]="22" />
+      </button>
+      <button
+        type="button"
+        (click)="nextImage(); $event.stopPropagation()"
+        aria-label="Next image"
+        class="absolute right-4 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 sm:right-8"
+      >
+        <lucide-icon name="chevron-right" [size]="22" />
+      </button>
+    }
+
+    <img
+      [src]="lb.images[lb.index]"
+      [alt]="'Screenshot ' + (lb.index + 1) + ' of ' + lb.images.length"
+      (click)="$event.stopPropagation()"
+      class="max-h-[85vh] max-w-full rounded-xl border border-white/10 object-contain shadow-2xl sm:max-w-[90vw]"
+    />
+
+    @if (lb.images.length > 1) {
+      <div
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full border border-white/10 bg-black/60 px-3 py-1 text-xs text-gray-300"
+      >
+        {{ lb.index + 1 }} / {{ lb.images.length }}
+      </div>
+    }
+  </div>
+}

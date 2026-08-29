@@ -24,6 +24,8 @@ export const profile = {
   github: 'https://github.com/dev-ayeshazee',
   headline: 'Senior Full-Stack Engineer Specializing in Scalable Frontend Architecture & Node.js Ecosystems.',
   tagline: '6+ years of crafting high-performance Angular apps, robust APIs, and modern web experiences.',
+  summary:
+    'Senior Frontend & Full-Stack Developer with 6+ years architecting scalable Angular and React applications backed by robust Node.js and MEAN-stack APIs. Proven track record across enterprise credit management, risk assessment, AI-integrated platforms, and e-commerce products — consistently improving performance, reducing load times, and shipping pixel-accurate, accessible interfaces. Comfortable owning delivery end-to-end, from Figma-to-code translation and frontend state architecture to database schema design and cross-team Agile delivery, for both enterprise clients and high-traffic global platforms.',
 } as const;
 
 export const educations: EducationEntry[] = [

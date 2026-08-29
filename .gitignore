@@ -44,3 +44,6 @@ Thumbs.db
 # Local tooling / AI assistant artifacts
 .claude/
 dev-server.log
+
+# Raw source screenshots (working copies) — only public/projects/ ships
+/assets
