@@ -1,8 +1,9 @@
 import { Component, HostListener, computed, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { categoryIcons, projectCategories, projects, type CategoryFilter, type Project } from '../../data/projects';
+import { personalProjects, type PersonalProject } from '../../data/personal-projects';
 
-type ViewMode = 'showcase' | 'case-studies';
+type ViewMode = 'showcase' | 'case-studies' | 'personal';
 
 interface LightboxState {
   images: string[];
@@ -23,6 +24,7 @@ export class ProjectsComponent {
   protected readonly viewMode = signal<ViewMode>('showcase');
   protected readonly activeCaseStudy = signal(0);
   protected readonly lightbox = signal<LightboxState | null>(null);
+  protected readonly personalProjects: PersonalProject[] = personalProjects;
 
   protected readonly filteredProjects = computed<Project[]>(() => {
     const key = this.activeCategory();

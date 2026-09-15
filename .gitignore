@@ -47,3 +47,4 @@ dev-server.log
 
 # Raw source screenshots (working copies) — only public/projects/ ships
 /assets
+/projects
