@@ -41,10 +41,10 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Local tooling / AI assistant artifacts
-.claude/
+# Local tooling
 dev-server.log
 
 # Raw source screenshots (working copies) — only public/projects/ ships
 /assets
 /projects
+/projects1

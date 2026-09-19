@@ -61,6 +61,7 @@ export const personalProjects: PersonalProject[] = [
       'projects/sakaiblog/02.png',
       'projects/sakaiblog/03.png',
       'projects/sakaiblog/04.png',
+      'projects/sakaiblog/05.png',
     ],
     details: [
       {
@@ -84,6 +85,7 @@ export const personalProjects: PersonalProject[] = [
           'The UI layer adds route guards, an HTTP interceptor for auth, and optimistic UI on post creation with automatic rollback on failure, while the backend ships with migrations, seed data, and unit tests — the whole stack containerized with Docker Compose.',
       },
     ],
+    githubUrl: 'https://github.com/dev-ayeshazee/sakai-blog',
   },
   {
     name: 'SmartSplit',
@@ -120,6 +122,7 @@ export const personalProjects: PersonalProject[] = [
           'Backed by a unit-tested calculation engine (25+ cases, including a 10,000-iteration randomized zero-loss proof), an integration-tested REST/SSE API, and a Dockerized deployment.',
       },
     ],
+    githubUrl: 'https://github.com/dev-ayeshazee/smart-split',
   },
   {
     name: 'MockFlow',
@@ -162,5 +165,43 @@ export const personalProjects: PersonalProject[] = [
           'Shipped end-to-end — architecture, backend, frontend, and Docker deployment — backed by a 46-test Vitest suite and CI, and verified live by driving the full stack through nginx to Redis.',
       },
     ],
+    githubUrl: 'https://github.com/dev-ayeshazee/mock-flow',
+  },
+  {
+    name: 'AI Job Agent',
+    tagline: 'Autonomous Job-Hunting & CV-Matching Assistant',
+    description:
+      'An autonomous job-hunting assistant that scrapes remote job boards, scores every listing against a candidate\'s CV using Google\'s Gemini AI, and surfaces only the matches worth a human\'s time.',
+    tags: ['Node.js', 'TypeScript', 'Express', 'Prisma', 'SQLite', 'Gemini API', 'Angular 22', 'Tailwind CSS v4'],
+    image: 'projects/aijobagent/01.png',
+    gallery: ['projects/aijobagent/01.png', 'projects/aijobagent/02.png', 'projects/aijobagent/03.png'],
+    details: [
+      {
+        title: 'Resilient Multi-Source Scraping Pipeline',
+        description:
+          'Built a full-stack pipeline that scrapes four job sources (RemoteOK, Arbeitnow, We Work Remotely, Jooble), each failing independently so one broken feed never kills a run.',
+      },
+      {
+        title: 'Gemini-Powered CV Parsing & Fit Scoring',
+        description:
+          "Used Gemini's multimodal API for two distinct tasks: parsing CVs into structured candidate profiles, and scoring job fit (0–100) with skill-gap analysis and automatic region-restriction detection.",
+      },
+      {
+        title: 'Screenshot-to-Job Extraction',
+        description:
+          "Added a screenshot-to-job feature — drop a screenshot of any job posting and it's extracted and scored on the spot.",
+      },
+      {
+        title: 'End-to-End Automation Loop',
+        description:
+          'Automated the loop end-to-end: scheduled daily scans, Discord alerts for strong matches, and AI-drafted cold outreach emails.',
+      },
+      {
+        title: 'Signals-Based Live Dashboard',
+        description:
+          'Shipped an Angular 22 (Signals-based) dashboard with live filtering, search, pagination, and status tracking.',
+      },
+    ],
+    githubUrl: 'https://github.com/dev-ayeshazee/ai-job-agent',
   },
 ];
