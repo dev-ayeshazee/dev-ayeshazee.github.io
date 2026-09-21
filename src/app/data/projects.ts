@@ -233,21 +233,25 @@ export const projects: Project[] = [
   {
     name: 'Senegal-DemDikk and GTSC',
     category: 'enterprise',
-    description: 'Public bus e-ticketing and scheduling platform.',
+    description: 'Public transit bus e-ticketing and fleet scheduling platform.',
+    tags: ['Angular', 'REST APIs', 'Leaflet', 'Payment Gateways'],
   },
   {
     name: 'Thya Technology',
     category: 'ai',
-    description: 'AI-driven platform for high-speed image processing UI workflows.',
+    description: 'Low-latency interface workflows for computer vision and image processing.',
+    tags: ['Angular', 'WebSockets', 'Canvas API', 'UI/UX'],
   },
   {
     name: 'GoTrackr',
     category: 'enterprise',
-    description: 'ERP management and task distribution dashboard.',
+    description: 'Enterprise resource planning (ERP) task allocation and employee performance tracking dashboard.',
+    tags: ['Angular', 'Node.js', 'Express', 'Chart.js'],
   },
   {
     name: 'MN ATELIER',
     category: 'ecommerce',
-    description: 'E-commerce fashion website with responsive shopping UI.',
+    description: 'High-performance fashion e-commerce storefront with responsive shopping flows.',
+    tags: ['Angular', 'Tailwind CSS', 'Stripe', 'SSR'],
   },
 ];
