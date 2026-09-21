@@ -90,7 +90,6 @@ export const personalProjects: PersonalProject[] = [
       },
     ],
     githubUrl: 'https://github.com/dev-ayeshazee/sakai-blog',
-    liveUrl: 'https://blog-frontend-sj23.onrender.com',
   },
   {
     name: 'SmartSplit',

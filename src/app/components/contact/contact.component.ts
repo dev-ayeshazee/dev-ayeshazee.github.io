@@ -3,11 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
 import { profile } from '../../data/profile';
 
-// Create a form at https://formspree.io and replace this with your own endpoint ID.
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-
-type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
-
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -17,7 +12,7 @@ type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
 })
 export class ContactComponent {
   protected readonly profile = profile;
-  protected readonly status = signal<SubmitStatus>('idle');
+  protected readonly submitted = signal(false);
 
   private readonly fb = new FormBuilder();
 
@@ -39,30 +34,18 @@ export class ContactComponent {
     return this.form.controls.message;
   }
 
-  async submit(): Promise<void> {
+  submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.status.set('loading');
-    const payload = this.form.getRawValue();
+    const { name, email, message } = this.form.getRawValue();
+    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
 
-    try {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Formspree responded with ${response.status}`);
-      }
-
-      this.status.set('success');
-      this.form.reset();
-    } catch {
-      this.status.set('error');
-    }
+    this.submitted.set(true);
+    this.form.reset();
   }
 }
