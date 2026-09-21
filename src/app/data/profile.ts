@@ -22,10 +22,12 @@ export const profile = {
   phoneHref: 'tel:03217764204',
   linkedin: 'https://www.linkedin.com/in/ayesha-zargham/',
   github: 'https://github.com/dev-ayeshazee',
-  headline: 'Senior Full-Stack Engineer Specializing in Scalable Frontend Architecture & Node.js Ecosystems.',
-  tagline: '6+ years of crafting high-performance Angular apps, robust APIs, and modern web experiences.',
+  resumeUrl: 'Ayesha_Zargham_Resume.pdf',
+  headline: 'Senior Full-Stack Engineer',
+  tagline:
+    'Architecting enterprise-grade Angular & React applications, backed by high-throughput Node.js APIs and scalable frontend systems.',
   summary:
-    'Senior Frontend & Full-Stack Developer with 6+ years architecting scalable Angular and React applications backed by robust Node.js and MEAN-stack APIs. Proven track record across enterprise credit management, risk assessment, AI-integrated platforms, and e-commerce products — consistently improving performance, reducing load times, and shipping pixel-accurate, accessible interfaces. Comfortable owning delivery end-to-end, from Figma-to-code translation and frontend state architecture to database schema design and cross-team Agile delivery, for both enterprise clients and high-traffic global platforms.',
+    '6+ years architecting scalable frontend systems and leading enterprise Angular migrations, real-time analytics platforms, and high-throughput Node.js APIs for global clients. Delivered measurable performance wins along the way — including a 25% reduction in initial load times — while shipping pixel-accurate, accessible interfaces end-to-end.',
 } as const;
 
 export const educations: EducationEntry[] = [

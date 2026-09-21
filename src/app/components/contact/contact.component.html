@@ -124,14 +124,33 @@
           }
         </div>
 
-        <button type="submit" class="btn-primary w-full justify-center">
-          Send Message
-          <lucide-icon name="send" [size]="16" />
+        <button
+          type="submit"
+          [disabled]="status() === 'loading'"
+          class="btn-primary w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          @if (status() === 'loading') {
+            <span
+              class="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
+              aria-hidden="true"
+            ></span>
+            Sending...
+          } @else {
+            Send Message
+            <lucide-icon name="send" [size]="16" />
+          }
         </button>
 
-        @if (submitted()) {
-          <p class="text-center text-sm text-accent-cyan">
-            Your email client should now be open — thanks for reaching out!
+        @if (status() === 'success') {
+          <p class="flex items-center justify-center gap-2 text-center text-sm text-accent-cyan">
+            <lucide-icon name="check" [size]="16" />
+            Thanks for reaching out — I'll get back to you soon!
+          </p>
+        }
+        @if (status() === 'error') {
+          <p class="text-center text-sm text-accent-pink">
+            Something went wrong sending your message. Please try again, or email me directly at
+            <a [href]="'mailto:' + profile.email" class="underline hover:text-white">{{ profile.email }}</a>.
           </p>
         }
       </form>

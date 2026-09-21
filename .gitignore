@@ -48,3 +48,6 @@ dev-server.log
 /assets
 /projects
 /projects1
+
+# Working copy of the resume — only public/Ayesha_Zargham_Resume.pdf ships
+/Ayesha_Zargham_Resume.pdf

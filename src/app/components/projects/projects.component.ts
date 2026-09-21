@@ -1,14 +1,21 @@
 import { Component, HostListener, computed, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { categoryIcons, projectCategories, projects, type CategoryFilter, type Project } from '../../data/projects';
+import { categoryIcons, projects, type Project } from '../../data/projects';
 import { personalProjects, type PersonalProject } from '../../data/personal-projects';
 
-type ViewMode = 'showcase' | 'case-studies' | 'personal';
+type ViewMode = 'personal' | 'enterprise';
 
 interface LightboxState {
   images: string[];
   index: number;
 }
+
+const FLAGSHIP_ENTERPRISE_PROJECTS = [
+  'Hoopiz — Credit Management & Risk Intelligence Platform',
+  'Websays — Social Listening Platform',
+  'Zone Healthy — Health & Nutrition Meal Delivery Platform',
+  'Saylogix — Multi-Merchant Warehouse & Fulfillment Management System',
+];
 
 @Component({
   selector: 'app-projects',
@@ -18,33 +25,26 @@ interface LightboxState {
   styleUrl: './projects.component.css',
 })
 export class ProjectsComponent {
-  protected readonly categories: CategoryFilter[] = projectCategories;
   protected readonly categoryIcons = categoryIcons;
-  protected readonly activeCategory = signal<CategoryFilter['key']>('all');
-  protected readonly viewMode = signal<ViewMode>('showcase');
-  protected readonly activeCaseStudy = signal(0);
+  protected readonly viewMode = signal<ViewMode>('personal');
+  protected readonly activeAccordionProject = signal(-1);
   protected readonly lightbox = signal<LightboxState | null>(null);
   protected readonly personalProjects: PersonalProject[] = personalProjects;
 
-  protected readonly filteredProjects = computed<Project[]>(() => {
-    const key = this.activeCategory();
-    return key === 'all' ? projects : projects.filter((project) => project.category === key);
-  });
-
-  protected readonly caseStudies = computed<Project[]>(() =>
-    projects.filter((project) => !!project.details?.length),
+  protected readonly flagshipProjects: Project[] = FLAGSHIP_ENTERPRISE_PROJECTS.map(
+    (name) => projects.find((project) => project.name === name)!,
   );
 
-  select(key: CategoryFilter['key']): void {
-    this.activeCategory.set(key);
-  }
+  protected readonly additionalProjects: Project[] = projects.filter(
+    (project) => !FLAGSHIP_ENTERPRISE_PROJECTS.includes(project.name),
+  );
 
   setView(mode: ViewMode): void {
     this.viewMode.set(mode);
   }
 
-  toggleCaseStudy(index: number): void {
-    this.activeCaseStudy.update((current) => (current === index ? -1 : index));
+  toggleAccordion(index: number): void {
+    this.activeAccordionProject.update((current) => (current === index ? -1 : index));
   }
 
   openLightbox(images: string[], index: number): void {

@@ -2,6 +2,7 @@ import type { ProjectDetailPoint } from './projects';
 
 export interface PersonalProject {
   name: string;
+  badge: string;
   tagline: string;
   description: string;
   tags: string[];
@@ -9,11 +10,13 @@ export interface PersonalProject {
   gallery: string[];
   details: ProjectDetailPoint[];
   githubUrl?: string;
+  liveUrl?: string;
 }
 
 export const personalProjects: PersonalProject[] = [
   {
     name: 'MediStock',
+    badge: 'Full-Stack System Architecture',
     tagline: 'Real-Time Critical-Medicine Finder & Reservation Platform',
     description:
       'A real-time critical-medicine finder and reservation platform built to solve a concrete problem with typical pharmacy inventory systems: during shortages, naive check-then-decrement APIs oversell stock, race under concurrent demand, and serve stale results from slow spatial queries.',
@@ -51,6 +54,7 @@ export const personalProjects: PersonalProject[] = [
   },
   {
     name: 'Sakai Blog',
+    badge: 'Full-Stack CMS Architecture',
     tagline: 'Full-Stack Blog Platform',
     description:
       'A full-stack blogging platform built to solve a common problem in content-driven apps: making large post archives fast to browse and safe to write to.',
@@ -86,9 +90,11 @@ export const personalProjects: PersonalProject[] = [
       },
     ],
     githubUrl: 'https://github.com/dev-ayeshazee/sakai-blog',
+    liveUrl: 'https://blog-frontend-sj23.onrender.com',
   },
   {
     name: 'SmartSplit',
+    badge: 'Real-Time Settlement Engine',
     tagline: 'Real-Time Group Bill & Grocery Splitter',
     description:
       'A full-stack app that makes splitting a shared bill exact: items are shared unevenly, tax and tip are distributed in proportion to what each person consumed, and rounding never silently drops or invents a penny.',
@@ -126,6 +132,7 @@ export const personalProjects: PersonalProject[] = [
   },
   {
     name: 'MockFlow',
+    badge: 'API Sandbox & Chaos Engineering',
     tagline: 'Dynamic API Contract Sandbox & Network Chaos Engine',
     description:
       'A tool that removes the trade-off frontend teams are usually forced into: static mocks give contract fidelity but no state or failure simulation, while stateful mocking means hand-writing every handler and chaos condition yourself.',
@@ -169,6 +176,7 @@ export const personalProjects: PersonalProject[] = [
   },
   {
     name: 'AI Job Agent',
+    badge: 'Autonomous AI Pipeline',
     tagline: 'Autonomous Job-Hunting & CV-Matching Assistant',
     description:
       'An autonomous job-hunting assistant that scrapes remote job boards, scores every listing against a candidate\'s CV using Google\'s Gemini AI, and surfaces only the matches worth a human\'s time.',

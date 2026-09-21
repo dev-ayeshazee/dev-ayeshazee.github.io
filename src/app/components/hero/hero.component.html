@@ -17,7 +17,7 @@
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-cyan opacity-75"></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-cyan"></span>
         </span>
-        Available for new opportunities
+        Available for Senior Full-Stack & Architecture Roles
       </div>
 
       <h1 class="mt-6 font-display text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
@@ -36,9 +36,17 @@
       </div>
 
       <div class="mt-10 flex flex-wrap items-center gap-4">
-        <a href="#experience" class="btn-primary">
-          View Work
+        <a href="#contact" class="btn-primary">
+          Get in Touch
           <lucide-icon name="arrow-right" [size]="16" />
+        </a>
+        <a
+          [href]="profile.resumeUrl"
+          download
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-accent-cyan/50 hover:text-white"
+        >
+          <lucide-icon name="download" [size]="16" />
+          Download Resume (PDF)
         </a>
         <a
           [href]="profile.linkedin"
@@ -59,6 +67,14 @@
           <lucide-icon name="github" [size]="18" />
         </a>
       </div>
+
+      <a
+        href="#projects"
+        class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 transition-colors duration-300 hover:text-accent-cyan"
+      >
+        View Architecture & Projects
+        <span aria-hidden="true">↓</span>
+      </a>
     </div>
 
     <p class="mx-auto mt-10 max-w-4xl text-center text-sm font-normal leading-relaxed text-gray-500 sm:text-base animate-fade-in-up">
