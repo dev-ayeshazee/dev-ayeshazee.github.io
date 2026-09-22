@@ -13,7 +13,7 @@ export interface EducationEntry {
 
 export const profile = {
   name: 'Ayesha Zargham',
-  title: 'Senior Frontend & Full-Stack Developer',
+  title: 'Senior Full-Stack Engineer | Frontend Architecture Specialist',
   experienceYears: '6+',
   location: 'Lahore, Pakistan',
   remote: 'Open to Remote Roles',
@@ -27,19 +27,12 @@ export const profile = {
   tagline:
     'Architecting enterprise-grade Angular & React applications, backed by high-throughput Node.js APIs and scalable frontend systems.',
   summary:
-    '6+ years architecting scalable frontend systems and leading enterprise Angular migrations, real-time analytics platforms, and high-throughput Node.js APIs for global clients. Delivered measurable performance wins along the way — including a 25% reduction in initial load times — while shipping pixel-accurate, accessible interfaces end-to-end.',
+    '6+ years architecting high-throughput Node.js APIs and scalable enterprise frontend systems across Angular and React, with a proven track record directing complex enterprise migrations and designing high-concurrency database models (MongoDB, PostgreSQL, Redis). Expert in reactive state management, real-time event streaming, and delivering resilient, distributed web architectures — with measurable wins along the way, including a 25% cut in web-vitals latency.',
 } as const;
 
 export const educations: EducationEntry[] = [
   { degree: 'BS Computer Science', school: 'FAST NUCES, Lahore', period: '2015 – 2019' },
   { degree: 'ICS', school: 'Kinnaird College for Women, Lahore', period: '2013 – 2015' },
-];
-
-export const certifications: string[] = [
-  'Become a MEAN JavaScript Developer — LinkedIn Learning',
-  'Building Angular and Node Apps with Authentication — LinkedIn Learning',
-  'Building RESTful APIs with Node.js and Express — LinkedIn Learning',
-  'Angular Essential Training — LinkedIn Learning',
 ];
 
 export const socialLinks: SocialLink[] = [

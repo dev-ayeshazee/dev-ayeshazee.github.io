@@ -1,10 +1,10 @@
 import { Component, computed, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
-import { certifications, educations } from '../../data/profile';
+import { educations } from '../../data/profile';
 import { languages } from '../../data/languages';
 import { architectureSkillKeys, skillGroups } from '../../data/skills';
 
-type TabKind = 'skills' | 'certifications' | 'education' | 'languages';
+type TabKind = 'skills' | 'education' | 'languages';
 
 interface Tab {
   key: string;
@@ -21,7 +21,6 @@ interface Tab {
   styleUrl: './skills.component.css',
 })
 export class SkillsComponent {
-  protected readonly certifications = certifications;
   protected readonly educations = educations;
   protected readonly languages = languages;
 
@@ -40,7 +39,6 @@ export class SkillsComponent {
       icon: group.icon,
       kind: 'skills' as const,
     })),
-    { key: 'certifications', label: 'Certifications', icon: 'award', kind: 'certifications' },
     { key: 'education', label: 'Education', icon: 'graduation-cap', kind: 'education' },
     { key: 'spoken-languages', label: 'Languages Spoken', icon: 'languages', kind: 'languages' },
   ];

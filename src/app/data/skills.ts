@@ -13,7 +13,7 @@ export const skillGroups: SkillGroup[] = [
     icon: 'layers',
     description: 'Frameworks, state, and patterns for building large, maintainable UIs.',
     skills: [
-      'Angular (v2–18)',
+      'Angular (v14–18, Standalone, Signals)',
       'React',
       'TypeScript',
       'Angular Signals',

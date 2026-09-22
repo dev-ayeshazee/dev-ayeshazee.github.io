@@ -4,7 +4,7 @@
       <p class="section-eyebrow">Technical Core</p>
       <h2 class="section-title">Skills &amp; Qualifications</h2>
       <p class="mx-auto mt-4 max-w-2xl text-gray-400">
-        A full-stack toolkit, plus the certifications, education, and languages behind it.
+        A full-stack toolkit, plus the education and languages behind it.
       </p>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div class="mt-16 text-center">
       <p class="section-eyebrow">Also Worth Knowing</p>
-      <h3 class="mt-2 font-display text-xl font-semibold text-white">Tooling, Credentials & Languages</h3>
+      <h3 class="mt-2 font-display text-xl font-semibold text-white">Tooling, Education & Languages</h3>
     </div>
 
     <div class="mt-8 flex flex-wrap justify-center gap-3">
@@ -73,18 +73,6 @@
             </div>
           }
         }
-        @case ('certifications') {
-          <div class="glass-panel animate-fade-in-up p-8">
-            <ul class="space-y-4">
-              @for (cert of certifications; track cert) {
-                <li class="flex items-start gap-3 text-sm leading-relaxed text-gray-300">
-                  <lucide-icon name="award" [size]="16" class="mt-0.5 shrink-0 text-accent-cyan" />
-                  {{ cert }}
-                </li>
-              }
-            </ul>
-          </div>
-        }
         @case ('education') {
           <div class="glass-panel animate-fade-in-up p-8">
             <div class="space-y-6">
@@ -102,12 +90,13 @@
         }
         @case ('languages') {
           <div class="glass-panel animate-fade-in-up p-8">
-            <div class="flex flex-wrap gap-4">
-              @for (lang of languages; track lang.name) {
-                <div class="rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3">
-                  <p class="font-medium text-white">{{ lang.name }}</p>
-                  <p class="text-sm text-gray-500">{{ lang.level }}</p>
-                </div>
+            <div class="flex flex-wrap gap-3">
+              @for (lang of languages; track lang) {
+                <span
+                  class="rounded-xl border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-white"
+                >
+                  {{ lang }}
+                </span>
               }
             </div>
           </div>

@@ -1,6 +1,5 @@
 import {
   ArrowRight,
-  Award,
   Building2,
   ChevronLeft,
   ChevronRight,
@@ -35,7 +34,6 @@ import {
 
 export const appIcons = {
   ArrowRight,
-  Award,
   Building2,
   ChevronLeft,
   ChevronRight,

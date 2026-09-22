@@ -107,9 +107,9 @@ export const personalProjects: PersonalProject[] = [
     ],
     details: [
       {
-        title: 'Zero-Drift Settlement Engine',
+        title: 'Debt-Simplification Settlement Engine',
         description:
-          'Built a custom settlement engine using integer-cent arithmetic and the Largest Remainder (Hare–Niemeyer) method, guaranteeing every split reconciles to the exact cent with zero drift across indivisible totals, uneven item weights, and clamped discounts.',
+          'Built a custom settlement engine around a debt-simplification graph algorithm using integer-cent arithmetic, minimizing the number of who-owes-whom transactions while guaranteeing every split reconciles to the exact cent with zero floating-point drift.',
       },
       {
         title: 'Shared Client/Server Calculation Package',
