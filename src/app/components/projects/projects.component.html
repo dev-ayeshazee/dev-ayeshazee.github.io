@@ -47,7 +47,7 @@
     </div>
 
     @if (viewMode() === 'personal') {
-      <div class="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-2 animate-fade-in-up">
+      <div class="mx-auto mt-10 max-w-4xl space-y-6 animate-fade-in-up">
         @for (project of personalProjects; track project.name; let i = $index) {
           <div
             class="glass-panel p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan sm:p-7"
