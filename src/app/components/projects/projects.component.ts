@@ -27,7 +27,8 @@ const FLAGSHIP_ENTERPRISE_PROJECTS = [
 export class ProjectsComponent {
   protected readonly categoryIcons = categoryIcons;
   protected readonly viewMode = signal<ViewMode>('personal');
-  protected readonly activeAccordionProject = signal(-1);
+  protected readonly activePersonalIndex = signal(0);
+  protected readonly activeFlagshipIndex = signal(0);
   protected readonly lightbox = signal<LightboxState | null>(null);
   protected readonly personalProjects: PersonalProject[] = personalProjects;
 
@@ -43,8 +44,12 @@ export class ProjectsComponent {
     this.viewMode.set(mode);
   }
 
-  toggleAccordion(index: number): void {
-    this.activeAccordionProject.update((current) => (current === index ? -1 : index));
+  togglePersonal(index: number): void {
+    this.activePersonalIndex.update((current) => (current === index ? -1 : index));
+  }
+
+  toggleFlagship(index: number): void {
+    this.activeFlagshipIndex.update((current) => (current === index ? -1 : index));
   }
 
   openLightbox(images: string[], index: number): void {

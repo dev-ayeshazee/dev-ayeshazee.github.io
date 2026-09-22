@@ -48,142 +48,188 @@
 
     @if (viewMode() === 'personal') {
       <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2 animate-fade-in-up">
-        @for (project of personalProjects; track project.name) {
+        @for (project of personalProjects; track project.name; let i = $index) {
           <div
-            class="glass-panel flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan sm:p-7"
+            class="glass-panel p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow-cyan sm:p-7"
+            [class.border-accent-cyan]="activePersonalIndex() === i"
           >
-            <span
-              class="inline-flex w-fit items-center gap-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/10 px-3 py-1 text-xs font-medium text-accent-cyan"
+            <button
+              type="button"
+              (click)="togglePersonal(i)"
+              [attr.aria-expanded]="activePersonalIndex() === i"
+              class="flex w-full items-start justify-between gap-4 text-left"
             >
-              <lucide-icon name="cpu" [size]="12" />
-              {{ project.badge }}
-            </span>
+              <div class="flex flex-col gap-2">
+                <span
+                  class="inline-flex w-fit items-center gap-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/10 px-3 py-1 text-xs font-medium text-accent-cyan"
+                >
+                  <lucide-icon name="cpu" [size]="12" />
+                  {{ project.badge }}
+                </span>
 
-            <div>
-              <h3 class="font-display text-lg font-semibold text-white">{{ project.name }}</h3>
-              <p class="mt-1 text-sm font-medium text-gray-400">{{ project.tagline }}</p>
-            </div>
-
-            <p class="text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
-
-            @if (project.gallery.length) {
-              <div class="grid grid-cols-4 gap-2">
-                @for (shot of project.gallery; track shot; let si = $index) {
-                  <button
-                    type="button"
-                    (click)="openLightbox(project.gallery, si)"
-                    aria-label="View full-size screenshot"
-                    class="group/shot relative aspect-video cursor-zoom-in overflow-hidden rounded-lg border border-white/10 p-0"
-                  >
-                    <img
-                      [src]="shot"
-                      [alt]="project.name + ' screenshot'"
-                      loading="lazy"
-                      class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/shot:scale-105"
-                    />
-                    <span
-                      class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
-                    >
-                      <lucide-icon name="maximize-2" [size]="16" class="text-white" />
-                    </span>
-                  </button>
-                }
-              </div>
-            }
-
-            <div class="space-y-4">
-              @for (point of project.details; track point.title) {
                 <div>
-                  <p class="text-sm font-semibold text-accent-violet">{{ point.title }}</p>
-                  <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ point.description }}</p>
+                  <h3 class="font-display text-lg font-semibold text-white">{{ project.name }}</h3>
+                  <p class="mt-1 text-sm font-medium text-gray-400">{{ project.tagline }}</p>
                 </div>
-              }
-            </div>
+              </div>
 
-            <div class="flex flex-wrap gap-2">
-              @for (tag of project.tags; track tag) {
-                <span class="chip">{{ tag }}</span>
-              }
-            </div>
+              <lucide-icon
+                name="chevron-right"
+                [size]="18"
+                class="mt-1 shrink-0 text-gray-500 transition-transform duration-300"
+                [class]="activePersonalIndex() === i ? 'rotate-90' : ''"
+              />
+            </button>
 
-            <div class="mt-auto flex flex-wrap gap-3 pt-2">
-              @if (project.liveUrl) {
-                <a
-                  [href]="project.liveUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary"
-                >
-                  Live Demo
-                  <lucide-icon name="external-link" [size]="14" />
-                </a>
-              }
-              @if (project.githubUrl) {
-                <a
-                  [href]="project.githubUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-gray-200 transition-colors duration-300 hover:border-accent-cyan/40 hover:text-white"
-                >
-                  <lucide-icon name="github" [size]="14" />
-                  GitHub Repo
-                </a>
-              }
+            <div
+              class="grid overflow-hidden transition-all duration-300 ease-out"
+              [class]="activePersonalIndex() === i ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'"
+            >
+              <div class="min-h-0 space-y-4">
+                <p class="text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
+
+                @if (project.gallery.length) {
+                  <div class="grid grid-cols-4 gap-2">
+                    @for (shot of project.gallery; track shot; let si = $index) {
+                      <button
+                        type="button"
+                        (click)="openLightbox(project.gallery, si); $event.stopPropagation()"
+                        aria-label="View full-size screenshot"
+                        class="group/shot relative aspect-video cursor-zoom-in overflow-hidden rounded-lg border border-white/10 p-0"
+                      >
+                        <img
+                          [src]="shot"
+                          [alt]="project.name + ' screenshot'"
+                          loading="lazy"
+                          class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/shot:scale-105"
+                        />
+                        <span
+                          class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
+                        >
+                          <lucide-icon name="maximize-2" [size]="16" class="text-white" />
+                        </span>
+                      </button>
+                    }
+                  </div>
+                }
+
+                <div class="space-y-4">
+                  @for (point of project.details; track point.title) {
+                    <div>
+                      <p class="text-sm font-semibold text-accent-violet">{{ point.title }}</p>
+                      <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ point.description }}</p>
+                    </div>
+                  }
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  @for (tag of project.tags; track tag) {
+                    <span class="chip">{{ tag }}</span>
+                  }
+                </div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                  @if (project.liveUrl) {
+                    <a
+                      [href]="project.liveUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      (click)="$event.stopPropagation()"
+                      class="btn-primary"
+                    >
+                      Live Demo
+                      <lucide-icon name="external-link" [size]="14" />
+                    </a>
+                  }
+                  @if (project.githubUrl) {
+                    <a
+                      [href]="project.githubUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      (click)="$event.stopPropagation()"
+                      class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-gray-200 transition-colors duration-300 hover:border-accent-cyan/40 hover:text-white"
+                    >
+                      <lucide-icon name="github" [size]="14" />
+                      GitHub Repo
+                    </a>
+                  }
+                </div>
+              </div>
             </div>
           </div>
         }
       </div>
     } @else {
       <div class="mx-auto mt-10 max-w-4xl space-y-6 animate-fade-in-up">
-        @for (project of flagshipProjects; track project.name) {
-          <div class="glass-panel p-6 sm:p-7">
-            <div class="flex items-center gap-2">
-              <lucide-icon [name]="categoryIcons[project.category]" [size]="14" class="shrink-0 text-accent-cyan" />
-              <h3 class="font-display text-lg font-semibold text-white">{{ project.name }}</h3>
-            </div>
+        @for (project of flagshipProjects; track project.name; let i = $index) {
+          <div class="glass-panel p-6 sm:p-7" [class.border-accent-cyan]="activeFlagshipIndex() === i">
+            <button
+              type="button"
+              (click)="toggleFlagship(i)"
+              [attr.aria-expanded]="activeFlagshipIndex() === i"
+              class="flex w-full items-start justify-between gap-4 text-left"
+            >
+              <div class="flex items-center gap-2">
+                <lucide-icon [name]="categoryIcons[project.category]" [size]="14" class="shrink-0 text-accent-cyan" />
+                <h3 class="font-display text-lg font-semibold text-white">{{ project.name }}</h3>
+              </div>
+              <lucide-icon
+                name="chevron-right"
+                [size]="18"
+                class="mt-0.5 shrink-0 text-gray-500 transition-transform duration-300"
+                [class]="activeFlagshipIndex() === i ? 'rotate-90' : ''"
+              />
+            </button>
             <p class="mt-2 text-sm leading-relaxed text-gray-400">{{ project.description }}</p>
 
-            @if (project.gallery?.length) {
-              <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                @for (shot of project.gallery; track shot; let si = $index) {
-                  <button
-                    type="button"
-                    (click)="openLightbox(project.gallery!, si)"
-                    aria-label="View full-size screenshot"
-                    class="group/shot relative aspect-video cursor-zoom-in overflow-hidden rounded-lg border border-white/10 p-0"
-                  >
-                    <img
-                      [src]="shot"
-                      [alt]="project.name + ' screenshot'"
-                      loading="lazy"
-                      class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/shot:scale-105"
-                    />
-                    <span
-                      class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
-                    >
-                      <lucide-icon name="maximize-2" [size]="18" class="text-white" />
-                    </span>
-                  </button>
+            <div
+              class="grid overflow-hidden transition-all duration-300 ease-out"
+              [class]="activeFlagshipIndex() === i ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'"
+            >
+              <div class="min-h-0">
+                @if (project.gallery?.length) {
+                  <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    @for (shot of project.gallery; track shot; let si = $index) {
+                      <button
+                        type="button"
+                        (click)="openLightbox(project.gallery!, si)"
+                        aria-label="View full-size screenshot"
+                        class="group/shot relative aspect-video cursor-zoom-in overflow-hidden rounded-lg border border-white/10 p-0"
+                      >
+                        <img
+                          [src]="shot"
+                          [alt]="project.name + ' screenshot'"
+                          loading="lazy"
+                          class="h-full w-full object-cover object-top transition-transform duration-300 group-hover/shot:scale-105"
+                        />
+                        <span
+                          class="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover/shot:bg-black/50 group-hover/shot:opacity-100"
+                        >
+                          <lucide-icon name="maximize-2" [size]="18" class="text-white" />
+                        </span>
+                      </button>
+                    }
+                  </div>
                 }
-              </div>
-            }
 
-            <div class="mt-5 space-y-4">
-              @for (point of project.details; track point.title) {
-                <div>
-                  <p class="text-sm font-semibold text-accent-violet">{{ point.title }}</p>
-                  <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ point.description }}</p>
+                <div class="mt-5 space-y-4">
+                  @for (point of project.details; track point.title) {
+                    <div>
+                      <p class="text-sm font-semibold text-accent-violet">{{ point.title }}</p>
+                      <p class="mt-1 text-sm leading-relaxed text-gray-400">{{ point.description }}</p>
+                    </div>
+                  }
                 </div>
-              }
-            </div>
 
-            @if (project.tags?.length) {
-              <div class="mt-5 flex flex-wrap gap-2">
-                @for (tag of project.tags; track tag) {
-                  <span class="chip">{{ tag }}</span>
+                @if (project.tags?.length) {
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    @for (tag of project.tags; track tag) {
+                      <span class="chip">{{ tag }}</span>
+                    }
+                  </div>
                 }
               </div>
-            }
+            </div>
           </div>
         }
 
